@@ -1,15 +1,18 @@
 <template>
     <div>
         <b-navbar toggleable="lg" type="dark" variant="dark">
-        <b-navbar-brand href="#">Kanban</b-navbar-brand>
+        <b-navbar-brand href="#">
+            <img src="../assets/banner.png" alt="logo" style="width:100px; margin:-10px">
+        </b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto"><br/>
-            <b-button v-b-modal.modal-1 size="sm" class="my-2 my-sm-0">
+            <b-button v-b-modal.modal-1 size="sm" class="my-2 my-sm-0 mr-3">
                 <i class="fas fa-tasks" style="margin-right:5px;"></i>
                 New Task
-            </b-button>
+            </b-button><br/>
+            <b-button @click="logout" size="sm">Logout</b-button>
             </b-navbar-nav>
         </b-collapse>
         </b-navbar>
@@ -35,7 +38,9 @@
 </template>
 
 <script>
-import db from '../config/firebase'
+import firebase from 'firebase'
+import Swal from 'sweetalert2'
+import db from '../config/db'
 
 export default {
   name: 'NavBar',
@@ -79,6 +84,17 @@ export default {
     },
     hideModal () {
       this.$refs['modal-1'].hide()
+    },
+    logout () {
+      firebase.auth().signOut().then(() => {
+        this.$router.replace('login')
+        Swal.fire({
+          icon: 'success',
+          title: 'Success!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
     }
   }
 }

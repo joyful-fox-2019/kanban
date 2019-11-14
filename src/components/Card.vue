@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import db from '../config/firebase'
+import db from '../config/db'
 import Swal from 'sweetalert2'
 
 export default {
@@ -52,22 +52,22 @@ export default {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
       })
-      .then((result) => {
-        if (result.value) {
-          db.collection('tasks').doc(id).delete()
-          .then(function() {
-              console.log("Document successfully deleted!");
-              Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-              )
-          })
-          .catch(function(error) {
-              console.error("Error removing document: ", error);
-          });
-        }
-      })
+        .then((result) => {
+          if (result.value) {
+            db.collection('tasks').doc(id).delete()
+              .then(function () {
+                console.log('Document successfully deleted!')
+                Swal.fire(
+                  'Deleted!',
+                  'Your file has been deleted.',
+                  'success'
+                )
+              })
+              .catch(function (error) {
+                console.error('Error removing document: ', error)
+              })
+          }
+        })
     },
     next (id) {
       switch (this.task.status) {

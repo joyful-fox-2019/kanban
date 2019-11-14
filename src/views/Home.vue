@@ -1,12 +1,16 @@
 <template>
-  <div style="display:flex;">
-    <Board v-for="(board, i) in boards" :key="i" :board="board" class="w-25 p-3"></Board>
+  <div>
+    <NavBar></NavBar>
+    <div style="display:flex;">
+      <Board v-for="(board, i) in boards" :key="i" :board="board" class="w-25 p-3"></Board>
+    </div>
   </div>
 </template>
 
 <script>
+import NavBar from '../components/NavBar'
 import Board from '../components/Board'
-import db from '../config/firebase'
+import db from '../config/db'
 
 export default {
   name: 'Home',
@@ -36,6 +40,7 @@ export default {
     }
   },
   components: {
+    NavBar,
     Board
   },
   created () {
