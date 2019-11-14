@@ -142,8 +142,12 @@ export default {
         .then(() => {
           Swal.fire("Good job!", "Add Task Success", "success");
         })
-        .catch(error => {
-          console.error("Error writing document: ", error);
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!"
+          });
         });
     },
 
@@ -158,8 +162,12 @@ export default {
           status: status
         })
         .then(() => {})
-        .catch(error => {
-          console.error("Error writing document: ", error);
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!"
+          });
         });
     },
     deleteEvent(id) {
@@ -183,8 +191,12 @@ export default {
                 icon: "success"
               });
             })
-            .catch(err => {
-              console.log(err);
+            .catch(() => {
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+              });
             });
         }
       });
