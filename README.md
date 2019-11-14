@@ -1,4 +1,5 @@
 # kanban
+Hosting URL: https://kanban-79aa6.firebaseapp.com
 
 ## Project setup
 ```
