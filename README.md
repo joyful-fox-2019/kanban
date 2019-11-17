@@ -2,7 +2,7 @@
 
 ### Public url
 
-aturkerjabos.firebaseapp.com
+kanban.afifahrahmak.site
 
 ### HOW TO RUN
 
