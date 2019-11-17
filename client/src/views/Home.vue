@@ -1,63 +1,84 @@
 <template>
-  <div class="home">
-    <div class="flex justify-center items-center p-2">
-      <AddTask></AddTask>
-    </div>
-    <div class="flex flex-wrap mx-auto p-10 justify-around">
-      <TaskContainer v-for="category in categories" :key="category.name" :category="category"></TaskContainer>
+  <div class="home columns">
+    <div v-for="board in boards" :key="board.id" class="column is-one-quarter">
+      <Board :boardName="board.name">
+        <div slot="board-name">
+          <div :class="`notification ${board.name}-header`">
+            {{ board.formattedName }}
+          </div>
+        </div>
+      </Board>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import TaskContainer from '../components/TaskContainer'
-import AddTask from '../components/AddTask'
-import db from '../config/firebase'
+import Board from '../components/Board'
+
 export default {
   name: 'home',
   data () {
     return {
-      categories: [
+      boards: [
         {
+          id: 1,
           name: 'backlog',
-          tasks: []
+          formattedName: 'Backlog'
         },
         {
+          id: 2,
           name: 'todo',
-          tasks: []
+          formattedName: 'To-Do'
         },
         {
+          id: 3,
           name: 'doing',
-          tasks: []
+          formattedName: 'Doing'
         },
         {
+          id: 4,
           name: 'done',
-          tasks: []
+          formattedName: 'Done'
         }
       ]
     }
   },
   components: {
-    TaskContainer, AddTask
-  },
-  methods: {
-    fetchTasks () {
-      db.collection('tasks')
-        .onSnapshot((querySnapshot) => {
-          this.categories.forEach(category => {
-            category.tasks = []
-          })
-          querySnapshot.forEach((doc) => {
-            let index = this.categories.findIndex(category => category.name === doc.data().status)
-            const payload = { id: doc.id, ...doc.data() }
-            this.categories[index].tasks.push(payload)
-          })
-        })
-    }
-  },
-  created () {
-    this.fetchTasks()
+    Board
   }
 }
 </script>
+
+<style scoped>
+.home {
+  margin: 20px;
+}
+
+.notification {
+  padding: 10px;
+  font-family: 'Bree Serif', serif;
+  font-size: 18px;
+  text-align: center;
+}
+
+.backlog-header {
+  background-color: blue;
+  background-image: linear-gradient(to bottom right, rgb(34, 110, 209), rgb(129, 214, 207));
+}
+
+.todo-header {
+  background-color: red;
+  background-image: linear-gradient(to bottom right, rgb(212, 0, 0), rgb(214, 129, 143));
+}
+
+.doing-header {
+  background-color: yellow;
+  background-image: linear-gradient(to bottom right, rgb(124, 112, 0), rgb(255, 232, 101));
+}
+
+.done-header {
+  background-color: green;
+  background-image: linear-gradient(to bottom right, rgb(71, 129, 43), rgb(83, 255, 120));
+}
+</style>
