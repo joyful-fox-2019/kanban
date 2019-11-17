@@ -1,13 +1,6 @@
 # kanban
 
-### Public url
+# made with love ❤️
 
-aturkerjabos.firebaseapp.com
+https://kanban-9499e.firebaseapp.com/
 
-### HOW TO RUN
-
-#### on client
-
-```  npm install ```
-
-``` npm run serve ```
