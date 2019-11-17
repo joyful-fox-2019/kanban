@@ -2,7 +2,6 @@
 
 ### Public url
 
-kanban.afifahrahmak.site
 
 ### HOW TO RUN
 
