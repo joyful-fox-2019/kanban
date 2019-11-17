@@ -1,9 +1,9 @@
 <template>
-  <div class="flex-column items-start">
-    <form @submit.prevent="addTask">
-      <label class="w-full">Name</label>
-      <input type="text" placeholder="Name" v-model="name" class="p-2 w-4/5">
-      <input type="submit" value="add" class="py-2 px-4 m-2">
+  <div class="flex-column items-start shadow m-2 p-2 bg-gray-200">
+    <form @submit.prevent="addTask" class="flex-column">
+      <label class="w-full">Add New Task</label>
+      <input type="text" placeholder="Task name" v-model="name" minlength="5" class="p-2 w-4/5 m-2 mt-4">
+      <input type="submit" value="add" class="py-2 px-4 m-2 bg-green-400">
     </form>
   </div>
 </template>
@@ -24,6 +24,7 @@ export default {
           console.log(`Document written with ID ${docRef.id}`)
         })
         .catch(console.log)
+        this.name = ''
     }
   }
 }

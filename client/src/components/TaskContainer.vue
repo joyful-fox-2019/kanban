@@ -1,6 +1,6 @@
 <template>
-  <div class="flex-column m-2 p-4 shadow-lg bg-white">
-    <div class="p-2 m-4" :class="cardColor">{{category.name.toUpperCase()}}</div>
+  <div class="flex-column m-2 p-4 shadow-lg bg-white xs:w-full md:w-1/3 lg:w-1/5 items-center">
+    <div class="p-2 m-4 w-full mx-auto" :class="cardColor">{{category.name.toUpperCase()}}</div>
     <TaskCard v-for="task in category.tasks" :key="task.id" :task="task"></TaskCard>
   </div>
 </template>
