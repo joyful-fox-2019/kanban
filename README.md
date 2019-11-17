@@ -1,12 +1,24 @@
-# kanban
+# amban
 
-### Public url
+## Project setup
+```
+npm install
+```
 
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-### HOW TO RUN
+### Compiles and minifies for production
+```
+npm run build
+```
 
-#### on client
+### Lints and fixes files
+```
+npm run lint
+```
 
-```  npm install ```
-
-``` npm run serve ```
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
