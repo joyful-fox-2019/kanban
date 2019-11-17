@@ -1,5 +1,4 @@
 # kanban
 
-### URL
-
-aturkerjabos.firebaseapp.com
+URL:
+https://kanban-57666.firebaseapp.com/
