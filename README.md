@@ -2,6 +2,7 @@
 
 ### Public url
 
+aturkerjabos.firebaseapp.com
 
 ### HOW TO RUN
 
