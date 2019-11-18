@@ -1,17 +1,18 @@
 <template>
-  <div id="navbar" class="flex justify-center p-4 bg-gray-800" style="height: 8vh;">
-    <div>
-      <h1 class="text-yellow-200">aturkerjabos</h1>
-    </div>
-  </div>
+<nav class="navbar navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">KanGaban</a>
+  <Modal/>
+</nav>
 </template>
 
 <script>
+import Modal from '../components/Modal'
 export default {
-  name: 'navbar'
+  components: {
+    Modal
+  }
 }
 </script>
 
 <style>
-
 </style>

@@ -1,63 +1,53 @@
 <template>
   <div class="home">
-    <div class="flex justify-center items-center p-2">
-      <AddTask></AddTask>
-    </div>
-    <div class="flex flex-wrap mx-auto p-10 justify-around">
-      <TaskContainer v-for="category in categories" :key="category.name" :category="category"></TaskContainer>
+    <Navbar></Navbar>
+    <div class="row d-flex justify-content-center pt-5">
+      <Content
+        v-for="status in kanGabans"
+        :key="status.name"
+        v-bind:name="status.name"
+        v-bind:color="status.color"
+      />
     </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import TaskContainer from '../components/TaskContainer'
-import AddTask from '../components/AddTask'
-import db from '../config/firebase'
+import Navbar from '../components/Navbar'
+import Content from '../components/Content'
+import db from './db'
 export default {
   name: 'home',
-  data () {
+  components: {
+    Navbar,
+    Content
+  },
+  data() {
     return {
-      categories: [
+      kanGabans: [
         {
-          name: 'backlog',
-          tasks: []
+          name: "Back - Log",
+          color: "red"
         },
         {
-          name: 'todo',
-          tasks: []
+          name: "To - Do",
+          color: "blue"
         },
         {
-          name: 'doing',
-          tasks: []
+          name: "Doing",
+          color: "yellow"
         },
         {
-          name: 'done',
-          tasks: []
+          name: "Done",
+          color: "green"
         }
       ]
     }
   },
-  components: {
-    TaskContainer, AddTask
-  },
-  methods: {
-    fetchTasks () {
-      db.collection('tasks')
-        .onSnapshot((querySnapshot) => {
-          this.categories.forEach(category => {
-            category.tasks = []
-          })
-          querySnapshot.forEach((doc) => {
-            let index = this.categories.findIndex(category => category.name === doc.data().status)
-            const payload = { id: doc.id, ...doc.data() }
-            this.categories[index].tasks.push(payload)
-          })
-        })
-    }
-  },
-  created () {
-    this.fetchTasks()
-  }
+  created() {}
 }
 </script>
+
+<style scoped>
+
+</style>
