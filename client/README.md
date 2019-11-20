@@ -1,5 +1,3 @@
-# kanban
-
 # client
 ```
 link deploy: https://kanban-b5e79.firebaseapp.com/
